@@ -1,11 +1,25 @@
 ﻿#include "gmock/gmock.h"
 #include "baseball.cpp"
 
-TEST(BaseballGame, TryGameTest) {
+class BaseballFixture : public testing::Test {
+public:
+    Baseball game;
+    void assertIlegalArgument(string guessNumber) {
+         try {
+            game.guess(guessNumber);
+            FAIL();
+        }
+        catch (exception e) {
+            // PASS
+        }
+    }
+};
+
+TEST_F(BaseballFixture, TryGameTest) {
     EXPECT_EQ(1,1);
 }
 
-TEST(BaseballGame, ThrowExcpetionInputLenthIsUnmatched) {
-    Baseball game;
-    EXPECT_THROW(game.guess(string ("12")), length_error);
+TEST_F(BaseballFixture, ThrowExcpetionWhenInvalidCase) {
+    assertIlegalArgument("12");
+    assertIlegalArgument("12s");
 }
