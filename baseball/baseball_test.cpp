@@ -22,4 +22,5 @@ TEST_F(BaseballFixture, TryGameTest) {
 TEST_F(BaseballFixture, ThrowExcpetionWhenInvalidCase) {
     assertIlegalArgument("12");
     assertIlegalArgument("12s");
+    assertIlegalArgument("121");
 }
